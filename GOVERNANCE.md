@@ -1,6 +1,6 @@
 # Governance
 
-`cloud-itonami-6512` is an OSS open-business blueprint for property, casualty, motor and health insurance -- underwriting, premium collection, and claims adjustment for damage and loss events.
+`cloud-itonami-isic-6512` is an OSS open-business blueprint for property, casualty, motor and health insurance -- underwriting, premium collection, and claims adjustment for damage and loss events.
 Governance covers both the capability layer and the operator model.
 
 ## Maintainers

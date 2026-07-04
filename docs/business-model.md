@@ -2,7 +2,7 @@
 
 ## Classification
 
-- Repository: `cloud-itonami-6512`
+- Repository: `cloud-itonami-isic-6512`
 - ISIC Rev.5: `6512`
 - Activity: property, casualty, motor and health insurance -- underwriting, premium collection, and claims adjustment for damage and loss events
 - Social impact: financial inclusion, data sovereignty, transparent audit

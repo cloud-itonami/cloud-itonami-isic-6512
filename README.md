@@ -1,4 +1,4 @@
-# cloud-itonami-6512
+# cloud-itonami-isic-6512
 
 Open Business Blueprint for **ISIC Rev.5 6512**: Non-life insurance.
 
