@@ -31,6 +31,11 @@
 ## Trust Controls
 
 - no policy is bound and no claim is settled without human sign-off
-- fabricated loss evidence or an inflated damage estimate forces a hold, not an override
-- every bind, claim and payout path is auditable
+- an unaccredited/sanctioned party, a fabricated jurisdiction requirement,
+  an incomplete underwriting document set, a claim filed against a
+  policy that was never actually bound, a settlement that would exceed
+  the policy's own coverage limit, or a double-settlement of an
+  already-paid claim -- each forces a hold, not an override
+- every intake, assessment, KYC, binding, claim and settlement path is
+  auditable
 - emergency manual override paths remain outside LLM control
