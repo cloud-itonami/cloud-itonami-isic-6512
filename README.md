@@ -140,8 +140,9 @@ same "self-contained sibling" relationship `cloud-itonami-isic-6511`'s
 | `src/casualty/governor.cljc` | **Non-Life Insurance Governor** -- 6 HARD checks (spec-basis · sanctions hold · document-complete · policy-not-bound · claim-missing · claim-exceeds-coverage) + double-settlement guard + 1 soft (confidence/actuation gate) |
 | `src/casualty/phase.cljc` | **Phase 0→3** -- read-only → assisted intake → assisted assess/screen → supervised (binding and claim settlement always human; policy intake and claim filing auto-eligible, no capital risk) |
 | `src/casualty/operation.cljc` | **OperationActor** -- langgraph-clj StateGraph |
+| `src/casualty/corporate_intel.cljc` | optional cross-reference into [`cloud-itonami-isic-8291`](https://github.com/cloud-itonami/cloud-itonami-isic-8291)'s `:disclosure/screen-name` (ADR-2607110400 §5) -- catches a policyholder/claimant clean on every LOCAL field but flagged in 8291's own sourced PEP/sanctions data; wired into `screen-kyc` via an injected fn, default is a no-op so every prior caller's behavior is unchanged unless explicitly opted in |
 | `src/casualty/sim.cljc` | demo driver |
-| `test/casualty/*_test.clj` | governor contract · phase invariants · store parity · registry conformance · facts coverage |
+| `test/casualty/*_test.clj` | governor contract · phase invariants · store parity · registry conformance · facts coverage · corporate-intelligence integration |
 
 ## Business-process coverage (honest)
 

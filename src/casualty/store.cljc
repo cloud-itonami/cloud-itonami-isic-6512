@@ -58,7 +58,15 @@
              :coverage-type "fire" :coverage-amount 100 :currency "USD" :jurisdiction "ATL" :status :intake}}
    :parties
    {"party-1" {:id "party-1" :name "田中 花子" :role :policyholder :sanctions-hit? false :id-doc "passport-jp-****9012"}
-    "party-3" {:id "party-3" :name "J. Doe" :role :policyholder :sanctions-hit? true :id-doc nil}}})
+    "party-3" {:id "party-3" :name "J. Doe" :role :policyholder :sanctions-hit? true :id-doc nil}
+    ;; deliberately clean on EVERY local field (no :sanctions-hit?, has an
+    ;; id-doc) -- this name is shared with cloud-itonami-isic-8291's own
+    ;; demo data (a sanctions-flagged official), so it exists purely to
+    ;; prove casualty.corporate-intel's cross-reference catches a hit
+    ;; this actor's local-only checks would otherwise miss entirely. Not
+    ;; attached to any policy by default.
+    "party-4" {:id "party-4" :name "Jane Smith (demo)" :role :policyholder
+               :sanctions-hit? false :id-doc "passport-uk-****5678"}}})
 
 ;; ----------------------------- shared commit logic -----------------------------
 
