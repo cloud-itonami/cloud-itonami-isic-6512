@@ -18,12 +18,12 @@
     (is (= (get-in result ["record" "coverage_type"]) "motor"))))
 
 (deftest binding-validation-rules
-  (is (thrown? Exception (r/register-binding "" "car" "motor" 0 "JPN" 1)))
-  (is (thrown? Exception (r/register-binding "party-1" "" "motor" 0 "JPN" 1)))
-  (is (thrown? Exception (r/register-binding "party-1" "car" "" 0 "JPN" 1)))
-  (is (thrown? Exception (r/register-binding "party-1" "car" "motor" -1 "JPN" 1)))
-  (is (thrown? Exception (r/register-binding "party-1" "car" "motor" 0 "" 1)))
-  (is (thrown? Exception (r/register-binding "party-1" "car" "motor" 0 "JPN" -1))))
+  (is (thrown? #?(:clj Exception :cljs js/Error) (r/register-binding "" "car" "motor" 0 "JPN" 1)))
+  (is (thrown? #?(:clj Exception :cljs js/Error) (r/register-binding "party-1" "" "motor" 0 "JPN" 1)))
+  (is (thrown? #?(:clj Exception :cljs js/Error) (r/register-binding "party-1" "car" "" 0 "JPN" 1)))
+  (is (thrown? #?(:clj Exception :cljs js/Error) (r/register-binding "party-1" "car" "motor" -1 "JPN" 1)))
+  (is (thrown? #?(:clj Exception :cljs js/Error) (r/register-binding "party-1" "car" "motor" 0 "" 1)))
+  (is (thrown? #?(:clj Exception :cljs js/Error) (r/register-binding "party-1" "car" "motor" 0 "JPN" -1))))
 
 ;; ----------------------------- register-claim-settlement -----------------------------
 
@@ -42,11 +42,11 @@
     (is (= (get-in result ["record" "immutable"]) true))))
 
 (deftest claim-settlement-validation-rules
-  (is (thrown? Exception (r/register-claim-settlement "" "claim-1" 500000 "JPN" 0)))
-  (is (thrown? Exception (r/register-claim-settlement "JPN-00000000" "" 500000 "JPN" 0)))
-  (is (thrown? Exception (r/register-claim-settlement "JPN-00000000" "claim-1" -1 "JPN" 0)))
-  (is (thrown? Exception (r/register-claim-settlement "JPN-00000000" "claim-1" 500000 "" 0)))
-  (is (thrown? Exception (r/register-claim-settlement "JPN-00000000" "claim-1" 500000 "JPN" -1))))
+  (is (thrown? #?(:clj Exception :cljs js/Error) (r/register-claim-settlement "" "claim-1" 500000 "JPN" 0)))
+  (is (thrown? #?(:clj Exception :cljs js/Error) (r/register-claim-settlement "JPN-00000000" "" 500000 "JPN" 0)))
+  (is (thrown? #?(:clj Exception :cljs js/Error) (r/register-claim-settlement "JPN-00000000" "claim-1" -1 "JPN" 0)))
+  (is (thrown? #?(:clj Exception :cljs js/Error) (r/register-claim-settlement "JPN-00000000" "claim-1" 500000 "" 0)))
+  (is (thrown? #?(:clj Exception :cljs js/Error) (r/register-claim-settlement "JPN-00000000" "claim-1" 500000 "JPN" -1))))
 
 (deftest claim-history-is-append-only
   (let [c1 (r/register-claim-settlement "JPN-00000000" "claim-1" 500000 "JPN" 0)
