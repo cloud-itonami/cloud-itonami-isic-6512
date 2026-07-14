@@ -143,6 +143,7 @@ same "self-contained sibling" relationship `cloud-itonami-isic-6511`'s
 | `src/casualty/corporate_intel.cljc` | optional cross-reference into [`cloud-itonami-isic-8291`](https://github.com/cloud-itonami/cloud-itonami-isic-8291)'s `:disclosure/screen-name` (ADR-2607110400 §5) -- catches a policyholder/claimant clean on every LOCAL field but flagged in 8291's own sourced PEP/sanctions data; wired into `screen-kyc` via an injected fn, default is a no-op so every prior caller's behavior is unchanged unless explicitly opted in |
 | `src/casualty/sim.cljc` | demo driver |
 | `test/casualty/*_test.clj` | governor contract · phase invariants · store parity · registry conformance · facts coverage · corporate-intelligence integration |
+| `wasm/claim_coverage.kotoba` | PoC: a WASM-compiled (`kotoba-lang/kotoba` -> `kotoba-lang/kototama`'s `actor:host` ABI) port of `governor.cljc`'s `claim-exceeds-coverage-violations` pure comparison -- see `wasm/README.md` for scope, the input/output ABI, and what's out of scope (Store, the claim/policy lookups, the StateGraph) |
 
 ## Business-process coverage (honest)
 
