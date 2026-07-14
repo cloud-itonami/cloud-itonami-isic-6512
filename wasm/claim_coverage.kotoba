@@ -1,0 +1,19 @@
+(ns cloud-itonami-claim-coverage)
+
+(defn claim-within-coverage? [claimed-amount coverage-amount]
+  (<= claimed-amount coverage-amount))
+
+;; ABI: `main` stays 0-arity (the compiler rejects a parameterized main --
+;; :main-arity, see kotoba-lang/kotoba's compile-wasm-expr) and reads its
+;; two real i32 inputs out of the exported linear memory instead, at fixed
+;; byte offsets a host writes into before calling main() (same convention
+;; as cloud-itonami-isic-6492's affordability.kotoba and
+;; cloud-itonami-isic-6511's underwriting_decision.kotoba):
+;;   offset 0: claimed-amount    (i32, smallest currency unit / cents)
+;;   offset 4: coverage-amount   (i32, cents)
+;; Returns 1 (claim within coverage -- claimed-amount <= coverage-amount,
+;; i.e. NOT a claim-exceeds-coverage violation) or 0 (claim exceeds
+;; coverage -- a HARD violation per casualty.governor/
+;; claim-exceeds-coverage-violations).
+(defn main []
+  (claim-within-coverage? (mem-i32-at 0 0) (mem-i32-at 0 4)))
