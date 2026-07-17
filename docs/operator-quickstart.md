@@ -2,6 +2,14 @@
 
 Get this Non-Life Insurance Governor up and running in minutes.
 
+## Who This Is For
+
+- **Licensed P&C insurers** and **MGAs** building new underwriting and claims operations
+- **Engineering teams** that need a governed, auditable insurance workflow scaffold
+- **Operators** who want to seal an LLM into a single proposal node, not let it decide coverage autonomously
+
+If you're evaluating whether an LLM should bind policies or settle claims: the answer is **no by construction here**, via an independent Governor that re-verifies every LLM proposal against your actual records.
+
 ## Prerequisites
 
 - **Clojure CLI** (`clojure` 1.12.0+)
