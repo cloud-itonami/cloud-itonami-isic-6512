@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Non-life insurance - Cloud Itonami ISIC 6512</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #fafafa;
+    }
+
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 2rem 0;
+      margin-bottom: 3rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: #000;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    .meta {
+      font-size: 0.9rem;
+      color: #999;
+    }
+
+    .meta span {
+      margin-right: 1.5rem;
+    }
+
+    main {
+      margin-bottom: 3rem;
+    }
+
+    section {
+      background: #fff;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #000;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: #444;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    ul {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      color: #444;
+    }
+
+    .cta {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+      background: #000;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .cta:hover {
+      background: #333;
+    }
+
+    .cta-secondary {
+      background: #f0f0f0;
+      color: #000;
+    }
+
+    .cta-secondary:hover {
+      background: #e0e0e0;
+    }
+
+    .links {
+      margin-bottom: 1rem;
+    }
+
+    .links a {
+      display: inline-block;
+      margin-right: 1rem;
+      margin-bottom: 0.5rem;
+      color: #0066cc;
+      text-decoration: none;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      border-top: 1px solid #e0e0e0;
+      padding: 2rem 0;
+      text-align: center;
+      color: #999;
+      font-size: 0.9rem;
+    }
+
+    .license {
+      color: #999;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Non-life insurance</h1>
+      <div class="subtitle">Open Business Blueprint for ISIC Rev.5 6512</div>
+      <div class="meta">
+        <span><strong>ISIC:</strong> 6512</span>
+        <span><strong>Domain:</strong> Property & casualty insurance</span>
+        <span><strong>Status:</strong> Public OSS</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2>About</h2>
+      <p>
+        A forkable, governable business model for property and casualty insurance operations.
+        This repository publishes an underwriting and claims-settlement actor that any qualified, licensed operator can
+        fork, deploy, run and sell. Built on the <code>langgraph-clj</code> StateGraph runtime, this actor seals an Underwriter-LLM
+        into a single node and wraps it with an independent Non-Life Insurance Governor, a human approval workflow, and an
+        immutable audit ledger to ensure policies are never bound and claims are never settled without human sign-off.
+      </p>
+      <p>
+        <strong>No policy is bound and no claim is settled autonomously, at any phase, by construction.</strong>
+        The governor enforces six hard checks: spec-basis citation, sanctions screening, document completeness, policy binding state,
+        claim-to-policy binding, and coverage-limit validation. This ensures the actor drafts and proposes, but a human operator
+        (a licensed underwriter or claims adjuster) is always the one who actually binds coverage or settles a claim.
+      </p>
+    </section>
+
+    <section>
+      <h2>Offer</h2>
+      <ul>
+        <li>Policy intake and per-jurisdiction underwriting-document checklisting</li>
+        <li>Policyholder and claimant KYC-sanctions screening</li>
+        <li>Policy-binding proposal with spec-basis citations</li>
+        <li>Claim filing against bound policies</li>
+        <li>Claim-settlement proposal with coverage validation</li>
+        <li>Immutable audit ledger for all operations</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Get started</h2>
+      <div class="links">
+        <a href="https://github.com/cloud-itonami/cloud-itonami-isic-6512#run">View on GitHub</a>
+        <a href="./operator-quickstart.md">Operator Quickstart</a>
+        <a href="./business-model.md">Business Model</a>
+        <a href="./operator-guide.md">Operator Guide</a>
+      </div>
+      <p style="margin-top: 1.5rem;">
+        <a href="https://itonami.cloud/isic-6512/" class="cta">Fork + self-host</a>
+        <a href="https://itonami.cloud/docs/go-live.md" class="cta cta-secondary">Managed deployment</a>
+      </p>
+    </section>
+
+    <section>
+      <h2>Architecture</h2>
+      <p>
+        <strong>Underwriter-LLM ⊣ Non-Life Insurance Governor:</strong>
+        The Underwriter-LLM drafts intake checklists, normalizes policy data, flags KYC gaps, and proposes binding and settlement decisions.
+        The Non-Life Insurance Governor independently verifies each proposal against the actor's own records and enforces hard guardrails
+        before any real-world action. The actor may recommend, but a human operator always approves final binding or settlement.
+      </p>
+      <p style="margin-top: 1rem;">
+        <strong>Robotics:</strong>
+        This blueprint is designed on the premise that a robot performs the physical domain work.
+        A claims-site damage-inspection drone documents property and vehicle loss for the human adjuster under this actor's governance.
+        High-stakes actions require human sign-off; the governor never dispatches hardware autonomously.
+      </p>
+    </section>
+
+    <section>
+      <h2>Trust Controls</h2>
+      <ul>
+        <li>No policy is bound and no claim is settled without human sign-off</li>
+        <li>Sanctions hits, incomplete documents, and coverage violations force a hold (not an override)</li>
+        <li>Every intake, assessment, KYC, binding, claim and settlement path is auditable</li>
+        <li>Emergency manual override paths remain outside LLM control</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Cloud Itonami — Open Business Blueprints for ISIC verticals</p>
+      <p class="license">
+        Code and implementation templates are <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">AGPL-3.0-or-later</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
