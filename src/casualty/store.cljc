@@ -22,10 +22,9 @@
   query over an immutable log -- the audit trail a policyholder trusting
   an operator with their coverage needs, and the evidence an operator
   needs if a binding or a settlement is later disputed."
-  (:require #?(:clj  [clojure.edn :as edn]
-               :cljs [cljs.reader :as edn])
-            [casualty.registry :as registry]
-            [langchain.db :as d]))
+  (:require [casualty.registry :as registry]
+            [langchain.db :as d]
+            [langchain-store.core :as ls]))
 
 (defprotocol Store
   (policy [s id])
@@ -182,9 +181,6 @@
    :sequence/jurisdiction     {:db/unique :db.unique/identity}
    :claim-sequence/jurisdiction {:db/unique :db.unique/identity}})
 
-(defn- enc [v] (pr-str v))
-(defn- dec* [s] (when s (edn/read-string s)))
-
 (defn- policy->tx [{:keys [id policyholder insured-property coverage-type coverage-amount
                           currency jurisdiction status policy-number]}]
   (cond-> {:policy/id id}
@@ -257,25 +253,25 @@
   (claim [_ id]
     (pull->claim (d/pull (d/db conn) claim-pull [:claim/id id])))
   (kyc-of [_ id]
-    (dec* (d/q '[:find ?p . :in $ ?pid
+    (ls/dec* (d/q '[:find ?p . :in $ ?pid
                 :where [?k :kyc/party-id ?pid] [?k :kyc/payload ?p]]
               (d/db conn) id)))
   (assessment-of [_ policy-id]
-    (dec* (d/q '[:find ?p . :in $ ?pid
+    (ls/dec* (d/q '[:find ?p . :in $ ?pid
                 :where [?a :assessment/policy-id ?pid] [?a :assessment/payload ?p]]
               (d/db conn) policy-id)))
   (ledger [_]
     (->> (d/q '[:find ?s ?f :where [?e :ledger/seq ?s] [?e :ledger/fact ?f]] (d/db conn))
          (sort-by first)
-         (mapv (comp dec* second))))
+         (mapv (comp ls/dec* second))))
   (binding-history [_]
     (->> (d/q '[:find ?s ?r :where [?e :binding/seq ?s] [?e :binding/record ?r]] (d/db conn))
          (sort-by first)
-         (mapv (comp dec* second))))
+         (mapv (comp ls/dec* second))))
   (claim-history [_]
     (->> (d/q '[:find ?s ?r :where [?e :settlement/seq ?s] [?e :settlement/record ?r]] (d/db conn))
          (sort-by first)
-         (mapv (comp dec* second))))
+         (mapv (comp ls/dec* second))))
   (next-sequence [_ jurisdiction]
     (or (d/q '[:find ?n . :in $ ?j
               :where [?e :sequence/jurisdiction ?j] [?e :sequence/next ?n]]
@@ -294,10 +290,10 @@
       (d/transact! conn [(policy->tx value)])
 
       :assessment/set
-      (d/transact! conn [{:assessment/policy-id (first path) :assessment/payload (enc payload)}])
+      (d/transact! conn [{:assessment/policy-id (first path) :assessment/payload (ls/enc payload)}])
 
       :kyc/set
-      (d/transact! conn [{:kyc/party-id (first path) :kyc/payload (enc payload)}])
+      (d/transact! conn [{:kyc/party-id (first path) :kyc/payload (ls/enc payload)}])
 
       :policy/mark-bound
       (let [policy-id (first path)
@@ -307,7 +303,7 @@
         (d/transact! conn
                      [(policy->tx (assoc policy-patch :id policy-id))
                       {:sequence/jurisdiction jurisdiction :sequence/next next-n}
-                      {:binding/seq (count (binding-history s)) :binding/record (enc (get result "record"))}])
+                      {:binding/seq (count (binding-history s)) :binding/record (ls/enc (get result "record"))}])
         result)
 
       :claim/filed
@@ -321,12 +317,12 @@
         (d/transact! conn
                      [(claim->tx (assoc claim-patch :id claim-id))
                       {:claim-sequence/jurisdiction jurisdiction :claim-sequence/next next-n}
-                      {:settlement/seq (count (claim-history s)) :settlement/record (enc (get result "record"))}])
+                      {:settlement/seq (count (claim-history s)) :settlement/record (ls/enc (get result "record"))}])
         result)
       nil)
     s)
   (append-ledger! [s fact]
-    (d/transact! conn [{:ledger/seq (count (ledger s)) :ledger/fact (enc fact)}])
+    (d/transact! conn [{:ledger/seq (count (ledger s)) :ledger/fact (ls/enc fact)}])
     fact)
   (with-policies [s policies]
     (when (seq policies) (d/transact! conn (mapv policy->tx (vals policies)))) s)
