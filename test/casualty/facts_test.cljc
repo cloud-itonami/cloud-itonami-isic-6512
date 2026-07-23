@@ -6,6 +6,11 @@
   (is (some? (facts/spec-basis "JPN")))
   (is (string? (:provenance (facts/spec-basis "JPN")))))
 
+(deftest can-has-a-spec-basis
+  (is (some? (facts/spec-basis "CAN")))
+  (is (string? (:provenance (facts/spec-basis "CAN"))))
+  (is (re-find #"S\.C\. 1991, c\. 47" (:legal-basis (facts/spec-basis "CAN")))))
+
 (deftest unknown-jurisdiction-has-no-fabricated-spec-basis
   (is (nil? (facts/spec-basis "ATL"))))
 

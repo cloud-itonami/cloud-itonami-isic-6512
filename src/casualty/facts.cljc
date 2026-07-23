@@ -76,6 +76,16 @@
           :required-docs ["Proposal form / application for general insurance cover"
                           "Proof of insurable interest (Insurance Act (Cap. 487) s. 94(1): \"no policy of insurance shall be issued on the life or lives of any person or persons, or on any other event or events whatsoever, wherein the person or persons for whose use, benefit, or on whose account such policy or policies shall be made, shall have no insurable interest\")"
                           "Risk survey / valuation report"
+                          "Policy document / statement of insurance particulars"]}
+   "CAN" {:name "Canada"
+          :owner-authority "Office of the Superintendent of Financial Institutions (OSFI)"
+          :legal-basis "Insurance Companies Act (S.C. 1991, c. 47)"
+          :national-spec "Insurance Companies Act s.52(1) (own text, fetched and read directly 2026-07-23 from laws-lois.justice.gc.ca's own FullText.html): \"a company or society shall not carry on any business until the Superintendent has, by order, approved the commencement and carrying on of business by the company or society\"; s.2(1) defines \"property and casualty company\" as \"a company or a provincial company that is not a life company or a marine company\""
+          :provenance "https://laws-lois.justice.gc.ca/eng/acts/i-11.8/"
+          :notes "This entry cites the federal Insurance Companies Act's own corporate-licensing/prudential layer -- the Superintendent's s.52(1) order to commence and carry on business, and the s.2(1) property-and-casualty-company class definition -- both independently confirmed verbatim against the Act's own FullText.html this session. HONEST GAP: this iteration did NOT independently confirm whether insurance-contract-level requirements (policy wording, consumer-facing document mandates) are federal or provincial in Canada, and does not assert a claim either way -- the :required-docs below are the same fleet-standard illustrative checklist every other entry in this catalog uses (per this namespace's own docstring: \"mirrors the generic non-life underwriting checklist ... in some form\"), not independently derived from a specific Canadian consumer-protection statute."
+          :required-docs ["Proposal form / application for property and casualty coverage"
+                          "Proof of insurable interest"
+                          "Risk survey / valuation report"
                           "Policy document / statement of insurance particulars"]}})
 
 (defn spec-basis
