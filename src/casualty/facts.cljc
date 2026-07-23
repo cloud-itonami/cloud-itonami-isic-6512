@@ -66,7 +66,17 @@
           :required-docs ["Antragsformular (application form)"
                           "Nachweis des versicherbaren Interesses (insurable-interest proof)"
                           "Risikobesichtigung/Wertgutachten (risk inspection/valuation)"
-                          "Produktinformationsblatt (product information sheet)"]}})
+                          "Produktinformationsblatt (product information sheet)"]}
+   "KEN" {:name "Kenya"
+          :owner-authority "Insurance Regulatory Authority (IRA)"
+          :legal-basis "Insurance Act (Cap. 487)"
+          :national-spec "Insurance (Valuation of Technical Provisions for General Insurance Business) Guidelines, 2017 (Legal Notice 37 of 2017)"
+          :provenance "https://ira.go.ke/"
+          :notes "Same-Act-covers-both-lines case (like Japan's 保険業法): the Insurance Act (Cap. 487) s.2 defines \"general insurance business\" as \"insurance business of any class or classes not being long term insurance business\", and s.26(1) requires an insurer licensed for both lines to hold separate licenses per class -- but the SOLVENCY figures genuinely diverge per class. The Second Schedule (s. 23(1)) 'MINIMUM CAPITAL REQUIREMENTS' sets general (non-life) insurance business paid-up capital at the higher of KES 600 million / risk-based capital / 20% of net earned premiums of the preceding financial year -- a different figure and formula from long term (life) business (KES 400 million / risk-based capital / 5% of life-business liabilities). s.41(2) (Part V -- Assets, Liabilities, Solvency Margins and Investments) separately requires 'An insurer carrying on both long term and general insurance business shall at all times maintain separate capital adequacy ratios.' Verbatim text fetched and read this session from new.kenyalaw.org's Insurance Act consolidation (eng@2023-12-11) and its Legal Notice 37 of 2017 consolidation (eng@2022-12-31)."
+          :required-docs ["Proposal form / application for general insurance cover"
+                          "Proof of insurable interest (Insurance Act (Cap. 487) s. 94(1): \"no policy of insurance shall be issued on the life or lives of any person or persons, or on any other event or events whatsoever, wherein the person or persons for whose use, benefit, or on whose account such policy or policies shall be made, shall have no insurable interest\")"
+                          "Risk survey / valuation report"
+                          "Policy document / statement of insurance particulars"]}})
 
 (defn spec-basis
   "The jurisdiction's requirement map, or nil -- nil means NO spec-basis,
