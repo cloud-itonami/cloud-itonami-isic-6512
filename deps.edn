@@ -7,6 +7,8 @@
  ;; with git coordinates.
  :deps {io.github.com-junkawasaki/langgraph-clj
         {:local/root "../../kotoba-lang/langgraph"}
+        io.github.kotoba-lang/langchain-store
+        {:local/root "../../kotoba-lang/langchain-store"}
         ;; optional: casualty.corporate-intel's cross-reference into
         ;; cloud-itonami-isic-8291 (ADR-2607110400 §5). Only
         ;; casualty.corporate-intel itself requires `dossier.*` --
