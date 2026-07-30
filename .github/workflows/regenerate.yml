@@ -15,6 +15,10 @@ jobs:
       - uses: actions/checkout@v4
         with: {repository: kotoba-lang/langchain, path: orgs/kotoba-lang/langchain}
       - uses: actions/checkout@v4
+        with: {repository: kotoba-lang/langchain-store, path: orgs/kotoba-lang/langchain-store}
+      - uses: actions/checkout@v4
+        with: {repository: kotoba-lang/kototama, path: orgs/kotoba-lang/kototama}
+      - uses: actions/checkout@v4
         with: {repository: kotoba-lang/langgraph, path: orgs/kotoba-lang/langgraph}
       # base `:deps` in this repo's own deps.edn declares a :local/root sibling
       # on cloud-itonami-isic-8291 (casualty.corporate-intel's optional
