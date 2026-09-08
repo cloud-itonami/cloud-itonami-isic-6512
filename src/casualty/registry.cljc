@@ -16,7 +16,7 @@
   RECORD an operator would keep, not the act of binding coverage or
   paying a claim itself (those are `casualty.operation`'s `:policy/bind`
   and `:claim/settle`, always human-gated -- see README `Actuation`)."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (defn- unsigned-certificate
   "Every certificate this actor produces is UNSIGNED -- signature is the
@@ -51,7 +51,7 @@
     (throw (ex-info "binding: jurisdiction required" {})))
   (when (< sequence 0)
     (throw (ex-info "binding: sequence must be >= 0" {})))
-  (let [policy-number (str (str/upper-case jurisdiction) "-" (zero-pad sequence 8))
+  (let [policy-number (str (str/upper jurisdiction) "-" (zero-pad sequence 8))
         record {"record_id" policy-number
                 "kind" "binding-draft"
                 "policyholder" policyholder
@@ -82,7 +82,7 @@
     (throw (ex-info "claim-settlement: jurisdiction required" {})))
   (when (< sequence 0)
     (throw (ex-info "claim-settlement: sequence must be >= 0" {})))
-  (let [settlement-number (str (str/upper-case jurisdiction) "-CLAIM-" (zero-pad sequence 6))
+  (let [settlement-number (str (str/upper jurisdiction) "-CLAIM-" (zero-pad sequence 6))
         record {"record_id" settlement-number
                 "kind" "claim-settlement-draft"
                 "policy_number" policy-number
