@@ -1,5 +1,5 @@
 (ns casualty.sim
-  "Demo driver -- `clojure -M:dev:run`. Walks a clean policy through
+  "Demo driver -- `kbb -M:dev:run`. Walks a clean policy through
   intake -> jurisdiction underwriting assessment -> KYC screening ->
   policy-bind proposal (always escalates) -> human approval -> commit,
   then a clean claim through filing (auto-commits; no capital risk) ->
