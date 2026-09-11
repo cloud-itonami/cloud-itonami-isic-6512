@@ -23,7 +23,7 @@ This repository is standalone (forkable outside the monorepo). If you're inside 
 Walk a clean policy-binding lifecycle and a clean claim-settlement lifecycle through the actor, plus six hard-hold cases:
 
 ```bash
-clojure -M:dev:run
+kbb -M:dev:run
 ```
 
 This runs `src/casualty/sim.cljk`, the demo driver. You'll see:
@@ -38,7 +38,7 @@ This runs `src/casualty/sim.cljk`, the demo driver. You'll see:
 The governor contract, phase invariants, and policy/claim store integrity are verified by:
 
 ```bash
-clojure -M:dev:test
+kbb -M:dev:test
 ```
 
 This suite covers:
@@ -50,7 +50,7 @@ This suite covers:
 **Optional: ClojureScript portable suite** (primary gate for cross-platform .cljc):
 
 ```bash
-clojure -Sdeps '{:paths ["src" "test"]}' -M:dev:cljs \
+kbb -Sdeps '{:paths ["src" "test"]}' -M:dev:cljs \
   -m cljs.main --target node -m casualty.portable-cljs-test-runner
 ```
 
@@ -59,7 +59,7 @@ clojure -Sdeps '{:paths ["src" "test"]}' -M:dev:cljs \
 Lint with clj-kondo (errors fail CI):
 
 ```bash
-clojure -M:lint
+kbb -M:lint
 ```
 
 ## Architecture reference
@@ -83,7 +83,7 @@ The Non-Life Insurance Governor is a pure function that:
 
 The demo driver (`casualty.sim`) outputs JSON records of each operation. To publish or integrate with a web interface:
 
-1. Capture the JSON output from `clojure -M:dev:run`
+1. Capture the JSON output from `kbb -M:dev:run`
 2. Wire it into a static HTML dashboard (or use an existing REST adapter)
 3. Serve via your preferred host (GitHub Pages, Netlify, or your own server)
 

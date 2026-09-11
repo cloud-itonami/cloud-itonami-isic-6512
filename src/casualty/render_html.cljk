@@ -6,7 +6,7 @@
   no generator at all. This namespace drives the REAL actor stack
   (`casualty.operation` -> `casualty.governor` -> `casualty.store`)
   through a scenario adapted from this repo's own `casualty.sim` demo
-  driver (`clojure -M:run`, confirmed by actually running it before this
+  driver (`kbb -M:run`, confirmed by actually running it before this
   file was written -- unlike `cloud-itonami-isic-851`'s `schoolops.sim`,
   this repo's own sim driver uses ids that DO match `casualty.store/
   demo-data`'s seeded policies/parties exactly, and every disposition it
@@ -28,7 +28,7 @@
   LLM-backed advisor, or the `wasm/` claim-coverage module; those are out
   of scope for the flagship operator-console generator.
 
-  Usage: `clojure -M:dev:render-html [out-file]`
+  Usage: `kbb -M:dev:render-html [out-file]`
   (default `docs/samples/operator-console.html`)."
   (:require [jp-go-dds.skin]
             [kotoba.lang.text :as str]
@@ -247,7 +247,7 @@
      "<main>\n"
      "  <section class=\"card\">\n"
      "    <h2>Policies</h2>\n"
-     "    <p class=\"muted\">Demo snapshot — build-time-generated from <code>casualty.store</code> via <code>casualty.render-html</code> (<code>clojure -M:dev:render-html</code>), regenerated nightly.</p>\n"
+     "    <p class=\"muted\">Demo snapshot — build-time-generated from <code>casualty.store</code> via <code>casualty.render-html</code> (<code>kbb -M:dev:render-html</code>), regenerated nightly.</p>\n"
      "    <table>\n"
      "      <thead><tr><th>Policy</th><th>Policyholder</th><th>Insured property</th><th>Coverage type</th><th>Coverage amount</th><th>Jurisdiction</th><th>Status</th><th>Policy number</th><th>Last op status</th></tr></thead>\n"
      "      <tbody>\n"
