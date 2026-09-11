@@ -26,7 +26,7 @@ Walk a clean policy-binding lifecycle and a clean claim-settlement lifecycle thr
 clojure -M:dev:run
 ```
 
-This runs `src/casualty/sim.cljc`, the demo driver. You'll see:
+This runs `src/casualty/sim.cljk`, the demo driver. You'll see:
 - Policy intake and underwriting assessment
 - KYC-sanctions screening
 - Policy-binding proposal (human sign-off required)
@@ -64,7 +64,7 @@ clojure -M:lint
 
 ## Architecture reference
 
-**Governor location:** `src/casualty/governor.cljc`
+**Governor location:** `src/casualty/governor.cljk`
 
 The Non-Life Insurance Governor is a pure function that:
 1. Accepts a proposal from the Underwriter-LLM and the current actor state
@@ -72,12 +72,12 @@ The Non-Life Insurance Governor is a pure function that:
 3. Returns a gate result: `:pass` (human approval route), `:hold` (forces escalation), or `:escalate-high` (high-stakes action)
 
 **Core components:**
-- `src/casualty/operation.cljc` — OperationActor (langgraph-clj StateGraph)
-- `src/casualty/underwriterllm.cljc` — Underwriter-LLM Advisor (mock-advisor ‖ llm-advisor)
-- `src/casualty/governor.cljc` — Non-Life Insurance Governor
-- `src/casualty/phase.cljc` — Phase state machine (read-only → intake → assess/screen → supervised)
-- `src/casualty/store.cljc` — Store protocol (MemStore ‖ DatomicStore) + append-only audit ledger
-- `src/casualty/facts.cljc` — Per-jurisdiction underwriting requirements with spec-basis citations
+- `src/casualty/operation.cljk` — OperationActor (langgraph-clj StateGraph)
+- `src/casualty/underwriterllm.cljk` — Underwriter-LLM Advisor (mock-advisor ‖ llm-advisor)
+- `src/casualty/governor.cljk` — Non-Life Insurance Governor
+- `src/casualty/phase.cljk` — Phase state machine (read-only → intake → assess/screen → supervised)
+- `src/casualty/store.cljk` — Store protocol (MemStore ‖ DatomicStore) + append-only audit ledger
+- `src/casualty/facts.cljk` — Per-jurisdiction underwriting requirements with spec-basis citations
 
 ## Demo page
 

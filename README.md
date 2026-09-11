@@ -133,15 +133,15 @@ same "self-contained sibling" relationship `cloud-itonami-isic-6511`'s
 
 | File | Role |
 |---|---|
-| `src/casualty/store.cljc` | **Store** protocol -- `MemStore` ‖ `DatomicStore` (`langchain.db`) + append-only audit ledger + policy-binding + claim-settlement history |
-| `src/casualty/registry.cljc` | Policy-binding + claim-settlement draft records (no fabricated international check-digit/settlement-number standard -- see docstring) |
-| `src/casualty/facts.cljc` | Per-jurisdiction non-life underwriting requirement catalog with an official spec-basis citation per entry, honest coverage reporting |
-| `src/casualty/underwriterllm.cljc` | **Underwriter-LLM Advisor** -- `mock-advisor` ‖ `llm-advisor`; intake/assessment/KYC/binding/claim-filing/claim-settlement proposals |
-| `src/casualty/governor.cljc` | **Non-Life Insurance Governor** -- 6 HARD checks (spec-basis · sanctions hold · document-complete · policy-not-bound · claim-missing · claim-exceeds-coverage) + double-settlement guard + 1 soft (confidence/actuation gate) |
-| `src/casualty/phase.cljc` | **Phase 0→3** -- read-only → assisted intake → assisted assess/screen → supervised (binding and claim settlement always human; policy intake and claim filing auto-eligible, no capital risk) |
-| `src/casualty/operation.cljc` | **OperationActor** -- langgraph-clj StateGraph |
-| `src/casualty/corporate_intel.cljc` | optional cross-reference into [`cloud-itonami-isic-8291`](https://github.com/cloud-itonami/cloud-itonami-isic-8291)'s `:disclosure/screen-name` (ADR-2607110400 §5) -- catches a policyholder/claimant clean on every LOCAL field but flagged in 8291's own sourced PEP/sanctions data; wired into `screen-kyc` via an injected fn, default is a no-op so every prior caller's behavior is unchanged unless explicitly opted in |
-| `src/casualty/sim.cljc` | demo driver |
+| `src/casualty/store.cljk` | **Store** protocol -- `MemStore` ‖ `DatomicStore` (`langchain.db`) + append-only audit ledger + policy-binding + claim-settlement history |
+| `src/casualty/registry.cljk` | Policy-binding + claim-settlement draft records (no fabricated international check-digit/settlement-number standard -- see docstring) |
+| `src/casualty/facts.cljk` | Per-jurisdiction non-life underwriting requirement catalog with an official spec-basis citation per entry, honest coverage reporting |
+| `src/casualty/underwriterllm.cljk` | **Underwriter-LLM Advisor** -- `mock-advisor` ‖ `llm-advisor`; intake/assessment/KYC/binding/claim-filing/claim-settlement proposals |
+| `src/casualty/governor.cljk` | **Non-Life Insurance Governor** -- 6 HARD checks (spec-basis · sanctions hold · document-complete · policy-not-bound · claim-missing · claim-exceeds-coverage) + double-settlement guard + 1 soft (confidence/actuation gate) |
+| `src/casualty/phase.cljk` | **Phase 0→3** -- read-only → assisted intake → assisted assess/screen → supervised (binding and claim settlement always human; policy intake and claim filing auto-eligible, no capital risk) |
+| `src/casualty/operation.cljk` | **OperationActor** -- langgraph-clj StateGraph |
+| `src/casualty/corporate_intel.cljk` | optional cross-reference into [`cloud-itonami-isic-8291`](https://github.com/cloud-itonami/cloud-itonami-isic-8291)'s `:disclosure/screen-name` (ADR-2607110400 §5) -- catches a policyholder/claimant clean on every LOCAL field but flagged in 8291's own sourced PEP/sanctions data; wired into `screen-kyc` via an injected fn, default is a no-op so every prior caller's behavior is unchanged unless explicitly opted in |
+| `src/casualty/sim.cljk` | demo driver |
 | `test/casualty/*_test.clj` | governor contract · phase invariants · store parity · registry conformance · facts coverage · corporate-intelligence integration |
 | `wasm/claim_coverage.kotoba` | PoC: a WASM-compiled (`kotoba-lang/kotoba` -> `kotoba-lang/kototama`'s `actor:host` ABI) port of `governor.cljc`'s `claim-exceeds-coverage-violations` pure comparison -- see `wasm/README.md` for scope, the input/output ABI, and what's out of scope (Store, the claim/policy lookups, the StateGraph) |
 

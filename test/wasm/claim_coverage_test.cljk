@@ -2,7 +2,7 @@
   "Hosts wasm/claim_coverage.wasm (compiled from wasm/claim_coverage.kotoba,
   see wasm/README.md) via kototama.tender -- proves casualty.governor's
   claim-exceeds-coverage check (`claim-exceeds-coverage-violations` in
-  src/casualty/governor.cljc) runs as a real WASM guest, not just as JVM
+  src/casualty/governor.cljk) runs as a real WASM guest, not just as JVM
   Clojure.
 
   ABI: main is 0-arity (kotoba wasm emit rejects a parameterized main --
