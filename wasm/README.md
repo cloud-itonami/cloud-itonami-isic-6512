@@ -3,10 +3,10 @@
 `claim_coverage.kotoba` is a port of `casualty.governor/claim-exceeds-
 coverage-violations`'s pure ground-truth comparison — is a claim's
 settlement amount within the policy's own recorded coverage-amount limit?
-(see `src/casualty/governor.cljc` lines ~140-150) — into the minimal
+(see `src/casualty/governor.cljk` lines ~140-150) — into the minimal
 `.kotoba` language subset, compiled to a real WASM module via
 `kotoba wasm emit`, and hosted via `kototama.tender`
-(`test/wasm/claim_coverage_test.clj`).
+(`test/wasm/claim_coverage_test.cljk`).
 
 This follows the same `kotoba wasm emit` → `kototama.tender` pattern
 already proven by `cloud-itonami-isic-6492`'s `wasm/affordability.kotoba`
